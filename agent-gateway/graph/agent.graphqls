@@ -1,0 +1,34 @@
+type Agent {
+    agent_id: Int!
+    first_name: String!
+    last_name: String!
+    phone: Int!
+    email: String!
+    password: String!
+    photo: String!
+    description: String!
+    properties: [Property]!
+}
+
+input CreateAgentInput {
+    first_name: String!
+    last_name: String!
+    phone: Int!
+    email: String!
+    password: String!
+    photo: String!
+    description: String!
+}
+
+input UpdateAgenInput {
+    agent_id: Int!
+    first_name: String!
+    last_name: String!
+    phone: Int!
+    email: String!
+    password: String!
+    photo: String!
+    description: String!
+}
+
+

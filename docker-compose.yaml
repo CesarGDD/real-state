@@ -1,0 +1,89 @@
+version: "3.9"
+services: 
+  minio:
+    image: bitnami/minio:latest
+    environment:
+      - MINIO_ROOT_USER=minio-root-user
+      - MINIO_ROOT_PASSWORD=minio-root-password
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    volumes:
+      - 'minio_data:/data'
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@domain.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "80:80"
+  postgres:
+    image: 'postgres:latest'
+    platform: linux/arm64
+    restart: always
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: grpcDB
+      PGDATA: /var/lib/postgresql/data/culo/
+    ports:
+      - "5432:5432"
+    volumes:
+      - data:/var/lib/postgresql/data
+  agent:
+    build: ./agent
+    ports: 
+      - 50050:50050
+    depends_on: 
+      - postgres
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: grpcDB
+    restart: always
+  property:
+    build: ./property
+    ports: 
+      - "50051:50051"
+    depends_on: 
+      - postgres
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: grpcDB
+    restart: always
+  storage:
+    build: ./storage
+    ports: 
+      - "50052:50052"
+    depends_on: 
+      - minio
+    environment:
+      MINIO_HOST: minio
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: grpcDB
+    restart: always
+  agent-gateway:
+    build: ./agent-gateway
+    ports: 
+      - "8080:8080"
+    depends_on: 
+      - agent
+      - property
+    environment:
+      PROPERTY_ADDRESS: property
+      PROPERTY_PORT: 50051
+      AGENT_ADDRESS: agent
+      AGENT_PORT: 50050
+      STORAGE_ADDRESS: storage
+      STORAGE_PORT: 50052
+
+volumes: 
+  data:
+  minio_data:
+    driver: local

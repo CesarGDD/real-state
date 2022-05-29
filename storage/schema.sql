@@ -1,0 +1,5 @@
+CREATE TABLE photos(
+  photo_id SERIAL PRIMARY KEY NOT NULL,
+  url VARCHAR(200) NOT NULL,
+  property_id SERIAL NOT NULL
+);

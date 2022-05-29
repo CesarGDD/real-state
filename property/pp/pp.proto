@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package pp;
+
+option go_package = "/pp";
+
+
+message Property {
+    int32 property_id = 1;
+    string address = 2;
+    string status = 3;
+    int32 rooms = 4;
+    int32 toilets = 5;
+    int32 park = 6;
+    int32 size = 7;
+    string description = 8;
+    string features = 9;
+    int32 agent_id = 10;
+}
+
+message CreatePropertyRequest {
+    Property property = 1;
+}
+message CreatePropertyResponse {
+    Property property = 1;
+}
+message GetPropertyByIdRequest {
+    int32 property_id = 1;
+}
+message GetPropertyByIdResponse {
+    Property property = 1;
+}
+
+message DeletePropertyRequest {
+    int32 property_id = 1;
+}
+message DeletePropertyResponse {
+    Property property = 1;
+}
+message UpdatePropertyRequest {
+    Property property = 1;
+}
+message UpdatePropertyResponse {
+    Property Property = 1;
+}
+
+message ListPropertyRequest {
+    
+}
+message ListPropertyResponse {
+    repeated Property property = 1;
+}
+message ListPropertyByAgentIdRequest {
+    int32 agent_id = 1;
+}
+message ListPropertyByAgentIdResponse {
+    repeated Property Property = 1;
+}
+
+service PropertysService {
+    rpc CreateProperty(CreatePropertyRequest) returns (CreatePropertyResponse);
+    rpc DeleteProperty(DeletePropertyRequest) returns (DeletePropertyResponse);
+    rpc GetPropertyById(GetPropertyByIdRequest) returns (GetPropertyByIdResponse);
+    rpc UpdateProperty(UpdatePropertyRequest) returns (UpdatePropertyResponse);
+    rpc ListProperty(ListPropertyRequest) returns (ListPropertyResponse);
+    rpc ListPropertyByAgent(ListPropertyByAgentIdRequest) returns (ListPropertyByAgentIdResponse);
+}

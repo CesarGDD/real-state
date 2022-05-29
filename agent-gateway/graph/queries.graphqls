@@ -1,0 +1,11 @@
+type Query{
+    # Agents
+    agent(agent_id: Int!): Agent!
+    ListAgent:[Agent!]
+    # Property
+    property(property_id: Int!): Property!
+    listProperty:[Property!]!
+    listPorpertyByAgent(agent_id: Int!):[Property]!
+    # Phtos
+    listPhotosByProperty(property_id: Int!):[Photo]!
+}

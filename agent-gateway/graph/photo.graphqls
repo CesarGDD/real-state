@@ -1,0 +1,12 @@
+scalar Upload
+
+type Photo {
+    photo_id: Int!
+    url: String!
+    property_id: Int!
+}
+
+input UploadPhotoInput {
+    property_id: Int!
+    file: Upload!
+}

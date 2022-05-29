@@ -1,0 +1,15 @@
+type Mutation {
+    # Agent
+    createAgent(input: CreateAgentInput): Agent!
+    updateAgent(input: UpdateAgenInput): Agent!
+    deleteAgent(agent_id: Int!): Agent!
+
+    # Property
+    createProperty(input: CreatePropertyInput): Property!
+    updateProperty(input: UpdatePropertyInput): Property!
+    deleteProperty(property_id: Int!): Property!
+
+    # Photo
+    uploadPhoto(input: [UploadPhotoInput!]!): [Photo]!
+    deletePhoto(photo_id: Int!): Photo!
+}

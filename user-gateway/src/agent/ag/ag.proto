@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package ag;
+
+message Agent {
+    int32 agent_id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    int32 phone = 4;
+    string email = 5;
+    string password = 6;
+    string photo = 7;
+    string description = 8;
+}
+
+message CreateAgentRequest {
+    Agent agent = 1;
+}
+message CreateAgentResponse {
+    Agent agent = 1;
+}
+message GetAgentByIdRequest {
+    int32 agent_id = 1;
+}
+message GetAgentByIdResponse {
+    Agent agent = 1;
+}
+
+message DeleteAgentRequest {
+    int32 agent_id = 1;
+}
+message DeleteAgentResponse {
+    Agent agent = 1;
+}
+message UpdateAgentRequest {
+    Agent agent = 1;
+}
+message UpdateAgentResponse {
+    Agent agent = 1;
+}
+
+message ListAgentRequest {
+    
+}
+message ListAgentResponse {
+    repeated Agent agent = 1;
+}
+
+service AgentsService {
+    rpc CreateAgent(CreateAgentRequest) returns (CreateAgentResponse);
+    rpc DeleteAgent(DeleteAgentRequest) returns (DeleteAgentResponse);
+    rpc GetAgentById(GetAgentByIdRequest) returns (GetAgentByIdResponse);
+    rpc UpdateAgent(UpdateAgentRequest) returns (UpdateAgentResponse);
+    rpc ListAgent(ListAgentRequest) returns (ListAgentResponse);
+}

@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package st;
+
+option go_package = "/st";
+
+
+message Photo {
+    int32 photo_id = 1;
+    string url = 2;
+    int32 property_id = 3;
+}
+
+message File {
+    bytes content = 1;
+    string fileName = 2;
+    int64 size = 3;
+    string contentType = 4;
+}
+
+
+message UploadPhotoRequest {
+    Photo photo = 1;
+    File file = 2;
+}
+message UploadPhotoResponse {
+    Photo photo = 1;
+}
+
+message DeletePhotoRequest {
+    int32 photo_id = 1;
+}
+message DeletePhotoResponse {
+    Photo photo = 1;
+}
+
+message ListPhotosRequest {
+    int32 property_id = 1;
+}
+message ListPhotosResponse {
+    repeated Photo photo = 1;
+}
+
+
+service PhotoService {
+    rpc UploadPhoto(stream UploadPhotoRequest) returns (UploadPhotoResponse);
+    rpc DeletePhoto(DeletePhotoRequest) returns (DeletePhotoResponse);
+    rpc ListPhotos(ListPhotosRequest) returns (ListPhotosResponse);
+}

@@ -1,0 +1,38 @@
+type Property {
+    property_id: Int!
+    address: String!
+    status: String!
+    rooms: Int!
+    toilets: Int!
+    park: Int!
+    size: Int!
+    description: String!
+    features: String!
+    agent_id: Int!
+}
+
+input CreatePropertyInput {
+    address: String!
+    status: String!
+    rooms: Int!
+    toilets: Int!
+    park: Int!
+    size: Int!
+    description: String!
+    features: String!
+    agent_id: Int!
+}
+
+input UpdatePropertyInput {
+    property_id: Int!
+    address: String!
+    status: String!
+    rooms: Int!
+    toilets: Int!
+    park: Int!
+    size: Int!
+    description: String!
+    features: String!
+    agent_id: Int!
+}
+
