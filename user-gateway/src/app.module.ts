@@ -4,6 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { PropertyModule } from './property/property.module';
 import { AgentModule } from './agent/agent.module';
+import { ChatModule } from './chat/chat.module';
 
 
 @Module({
@@ -14,7 +15,7 @@ import { AgentModule } from './agent/agent.module';
     },
     driver: ApolloDriver,
     installSubscriptionHandlers: true
-  }), PropertyModule, AgentModule],
+  }), PropertyModule, AgentModule, ChatModule],
   controllers: [],
   providers: [],
 })

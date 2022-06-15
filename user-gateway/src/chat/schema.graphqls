@@ -1,0 +1,41 @@
+type Chat {
+    id: String!
+    user_id: Int!
+    agent_id: Int!
+    messages: [Message]
+}
+
+type Message {
+    id: String!
+    chat_id: String!
+    content: String!
+    timestamp: Int!
+}
+
+input NewMessage {
+    chat_id: String!
+    content: String!
+}
+
+input NewChat {
+    user_id: Int!
+    agent_id: Int!
+}
+
+type Query {
+    getChat(id: String!): Chat!
+    getChats(id: String!): [Chat!]!
+    getMessage(id: String!): Message!
+    getMessages(id: String!): [Message]!
+}
+
+type Mutation {
+    createChat(input: NewChat!): Chat!
+    deleteChat(id: String!): String
+    createMessage(input: NewMessage!): Message!
+    deleteMessage(id: String!): String
+}
+
+type Subscription {
+    newMessage(chat_id: String!): Message!
+}

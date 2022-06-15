@@ -8,7 +8,7 @@ import { Msg } from './msg/msg.entity'
 @Module({
   imports: [TypeOrmModule.forRoot({
     type: 'mongodb',
-    url: 'mongodb://localhost/chat',
+    url: process.env.MONGO_URL,
     synchronize: true,
     useUnifiedTopology: true,
     entities: [

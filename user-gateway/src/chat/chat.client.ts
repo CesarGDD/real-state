@@ -4,8 +4,8 @@ import { join } from "path";
 export const grpcClient: ClientOptions = {
     transport: Transport.GRPC,
     options: {
-      url: process.env.PROPERTY_ADDRESS,
-      package: 'pp',
-      protoPath: join(__dirname, './pp/pp.proto')
+      url: process.env.CHAT_ADDRESS,
+      package: 'chatpb',
+      protoPath: join(__dirname, './chat/chatpb.proto')
     }
 }

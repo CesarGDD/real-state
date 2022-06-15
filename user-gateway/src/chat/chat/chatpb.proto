@@ -1,0 +1,102 @@
+syntax = "proto3";
+
+package chatpb;
+
+message Chat {
+    string id = 1;
+    int32 user_id = 2;
+    int32 agent_id = 3;
+}
+
+message CreateChatRequest {
+  int32 user_id = 1;
+  int32 agent_id = 2;
+}
+
+message CreateChatResponse {
+  Chat chat = 1;
+}
+
+message DeleteChatRequest {
+    string id = 1;
+}
+
+message DeleteChatResponse {
+  string deleted = 1;
+}
+
+message GetChatRequest {
+    string id = 1;
+}
+
+message GetChatResponse {
+  Chat chat = 1;
+}
+
+message GetChatsRequest {
+  int32 id = 1;
+}
+
+message GetChatsResponse {
+  repeated Chat chat = 1;
+}
+
+
+
+service ChatService {
+  rpc CreateChat(CreateChatRequest) returns (CreateChatResponse);
+  rpc DeleteChat(DeleteChatRequest) returns (DeleteChatResponse);
+  rpc GetChat(GetChatRequest) returns (GetChatResponse);
+  rpc GetChats(GetChatsRequest) returns (GetChatsResponse);
+}
+
+
+message Msg {
+    string id = 1;
+    string chat_id = 2;
+    string content = 3;
+    int32 timestamp = 4;
+}
+
+message CreateMsgRequest {
+  string chat_id = 1;
+  string content = 2;
+  int32 timestamp = 3;
+}
+
+message CreateMsgResponse {
+  Msg msg = 1;
+}
+
+message DeleteMsgRequest {
+    string id = 1;
+}
+
+message DeleteMsgResponse {
+  string deleted = 1;
+}
+
+message GetMsgRequest {
+    string id = 1;
+}
+
+message GetMsgResponse {
+  Msg Msg = 1;
+}
+
+message GetMsgsRequest {
+  string id = 1;
+}
+
+message GetMsgsResponse {
+  repeated Msg Msg = 1;
+}
+
+
+
+service MsgService {
+  rpc CreateMsg(CreateMsgRequest) returns (CreateMsgResponse);
+  rpc DeleteMsg(DeleteMsgRequest) returns (DeleteMsgResponse);
+  rpc GetMsg(GetMsgRequest) returns (GetMsgResponse);
+  rpc GetMsgs(GetMsgsRequest) returns (GetMsgsResponse);
+}

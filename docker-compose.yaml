@@ -31,6 +31,13 @@ services:
       - "5432:5432"
     volumes:
       - data:/var/lib/postgresql/data
+  mongodb:
+    image: "mongo"
+    ports: 
+      - 27017:27017
+    volumes: 
+      - data:/data/db
+    restart: always
   agent:
     build: ./agent
     ports: 
@@ -54,6 +61,16 @@ services:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
       POSTGRES_DB: grpcDB
+    restart: always
+  chat:
+    build: ./chat
+    ports:
+      - "50055:50055"
+    depends_on:
+      - mongodb
+    environment:
+      CHAT_ADDRESS: chat:50055
+      MONGO_URL: mongodb://mongodb:27017/chat
     restart: always
   storage:
     build: ./storage
@@ -82,6 +99,18 @@ services:
       AGENT_PORT: 50050
       STORAGE_ADDRESS: storage
       STORAGE_PORT: 50052
+  user-gateway:
+    build: ./user-gateway
+    ports:
+      - "8081:8081"
+    depends_on:
+      - agent
+      - chat
+      - property
+    environment:
+      AGENT_ADDRESS: agent:50050
+      CHAT_ADDRESS: chat:50055
+      PROPERTY_ADDRESS: property:50051
 
 volumes: 
   data:

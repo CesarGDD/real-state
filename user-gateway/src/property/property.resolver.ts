@@ -42,7 +42,7 @@ export class PropertyResolver implements OnModuleInit{
         return property
     }
 
-    @Query('listProperty')
+    @Query('listPropertyByAgent')
     async getPropertysByAgent(
         @Args('agent_id') agent_id: number
     ):Promise<Property[]>{

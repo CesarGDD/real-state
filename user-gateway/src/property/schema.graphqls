@@ -1,5 +1,5 @@
 type Property {
-    property_id: Int!
+    propertyId: Int!
     address: String!
     status: String!
     rooms: Int!
@@ -8,7 +8,7 @@ type Property {
     size: Int!
     description: String!
     features: String!
-    agent_id: Int!
+    agentId: Int!
     agent: Agent!
 }
 

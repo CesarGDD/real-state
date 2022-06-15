@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 import { MsgService } from './msg.service';
 import {GrpcMethod} from '@nestjs/microservices';
-import { CreateMsgRequest, CreateMsgResponse, DeleteMsgRequest, DeleteMsgResponse, GetMsgRequest, GetMsgResponse, GetMsgsRequest, GetMsgsResponse } from 'chatpb/chatpb';
+import { CreateMsgRequest, CreateMsgResponse, DeleteMsgRequest, DeleteMsgResponse, GetMsgRequest, GetMsgResponse, GetMsgsRequest, GetMsgsResponse } from 'src/chatpb/chatpb';
 
 @Controller('msg')
 export class MsgController {

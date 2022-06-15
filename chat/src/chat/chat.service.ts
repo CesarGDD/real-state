@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm'
 import { Chat } from './chat.entity';
 import { Repository } from 'typeorm';
-import { CreateChatRequest, CreateChatResponse, DeleteChatRequest, DeleteChatResponse, GetChatRequest, GetChatResponse, GetChatsRequest, GetChatsResponse } from 'chatpb/chatpb';
+import { CreateChatRequest, CreateChatResponse, DeleteChatRequest, DeleteChatResponse, GetChatRequest, GetChatResponse, GetChatsRequest, GetChatsResponse } from 'src/chatpb/chatpb';
 import  {v4 as uuid} from 'uuid';
 
 @Injectable()

@@ -29,6 +29,7 @@ export class AgentResolver implements OnModuleInit {
   }
   @Query('listAgent')
   async getAgents(req):Promise<Agent[]>{
+      console.log('listAgent graphql nest')
       const {agent} = await this.agentSvc.ListAgent(req).toPromise()
       return agent
   }
